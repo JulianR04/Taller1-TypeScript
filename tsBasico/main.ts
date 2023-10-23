@@ -1,31 +1,31 @@
 
 
-import { Serie } from './serie.js';
-import { dataSeries } from './data.js';
+import { Serie } from './Serie.js';
+import { series } from './data.js';
 
 let seriesTbody: HTMLElement = document.getElementById('series')!;
-const avgSeasonsElm: HTMLElement = document.getElementById("avg-seasons")!;
+const PromTempsElm: HTMLElement = document.getElementById("prom-temps")!;
 
-renderSeriesInTable(dataSeries);
+renderSeriesInTable(series);
 
-avgSeasonsElm.innerHTML = `${getAvgSeasons(dataSeries)}`
+PromTempsElm.innerHTML = `${getPromTemps(series)}`
 
-function renderSeriesInTable(series: Series[]): void {
+function renderSeriesInTable(series: Serie[]): void {
     console.log('Desplegando series');
     series.forEach(s => {
         let trElement = document.createElement("tr");
         trElement.innerHTML = `<td>${s.id}</td>
-                           <td>${s.name}</td>
+                           <td>${s.title}</td>
                            <td>${s.channel}</td>
                            <td>${s.seasons}</td>`;
         seriesTbody.appendChild(trElement);
   });
 }
 
-function getAvgSeasons(series: Series[]): number {
-  let totalSeasons: number = 0;
-  series.forEach((series) => totalSeasons = totalSeasons + series.seasons);
-  let seasonsAvg: number = totalSeasons / series.length 
-  return seasonsAvg;
+function getPromTemps(series: Serie[]): number {
+  let total: number = 0;
+  series.forEach((series) => total = total + series.seasons);
+  let promTemps: number = total / series.length 
+  return promTemps;
 }
           
