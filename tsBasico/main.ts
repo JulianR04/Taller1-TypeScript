@@ -1,14 +1,12 @@
-
-
 import { Serie } from './Serie.js';
-import { series } from './data.js';
+import { seriesInfo } from './data.js';
 
-let seriesTbody: HTMLElement = document.getElementById('series')!;
+let serieTbody: HTMLElement = document.getElementById('series')!;
 const PromTempsElm: HTMLElement = document.getElementById("prom-temps")!;
 
-renderSeriesInTable(series);
+renderSeriesInTable(seriesInfo);
 
-PromTempsElm.innerHTML = `${getPromTemps(series)}`
+PromTempsElm.innerHTML = `${getPromTemps(seriesInfo)}`
 
 function renderSeriesInTable(series: Serie[]): void {
     console.log('Desplegando series');
@@ -18,14 +16,14 @@ function renderSeriesInTable(series: Serie[]): void {
                            <td>${s.title}</td>
                            <td>${s.channel}</td>
                            <td>${s.seasons}</td>`;
-        seriesTbody.appendChild(trElement);
+        serieTbody.appendChild(trElement);
   });
 }
 
-function getPromTemps(series: Serie[]): number {
+function getPromTemps(serie: Serie[]): number {
   let total: number = 0;
-  series.forEach((series) => total = total + series.seasons);
-  let promTemps: number = total / series.length 
+  serie.forEach((serie) => total = total + serie.seasons);
+  let promTemps: number = total / serie.length 
   return promTemps;
 }
           
